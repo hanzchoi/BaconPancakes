@@ -15,7 +15,7 @@ public class ListFragment extends Fragment {
     @Override
     // This is what will be visible in our fragment
     // Need to return a view that represents our fragment list representing our fragment ist layout
-    // Layout inflater is what we convert sml to View
+    // Layout inflater is what we convert xml to View
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
@@ -25,7 +25,7 @@ public class ListFragment extends Fragment {
 
         //layout manager is responsible or determining where to lace the views
         // as well as when to reuse a view that's no longer visible
-        // To make sure Recycler view to act like a list we can use built in linearManager
+        // To make sure Recycler view to act like a vertical list we can use built in linearManager
         // Fragment always have to access their activity through the getActivity
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
