@@ -15,7 +15,7 @@ public class ListFragment extends Fragment {
     // Need to return a view that represents our fragment list representing our fragment ist layout
     // Layout inflater is what we convert sml to View
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list, container);
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
         return view;
     }
 }
