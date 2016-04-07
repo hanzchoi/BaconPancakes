@@ -11,16 +11,22 @@ import android.view.ViewGroup;
 
 public class ListFragment extends Fragment {
 
+    public interface OnRecipeSelectedInterface{
+        void onListRecipeSelected(int index);
+    }
+
+
     @Nullable
     @Override
     // This is what will be visible in our fragment
     // Need to return a view that represents our fragment list representing our fragment ist layout
     // Layout inflater is what we convert xml to View
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        OnRecipeSelectedInterface listener = (OnRecipeSelectedInterface) getActivity();
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.listRecyclerView);
-        ListAdapter listAdapter = new ListAdapter();
+        ListAdapter listAdapter = new ListAdapter(listener);
         recyclerView.setAdapter(listAdapter);  // attached the adapter to the recyclerView
 
         //layout manager is responsible or determining where to lace the views

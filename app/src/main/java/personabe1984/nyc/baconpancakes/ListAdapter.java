@@ -10,6 +10,12 @@ import android.widget.TextView;
 
 public class ListAdapter extends RecyclerView.Adapter {
 
+    private final ListFragment.OnRecipeSelectedInterface mListener;
+
+    public ListAdapter(ListFragment.OnRecipeSelectedInterface listener) {
+        mListener = listener;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
@@ -32,6 +38,7 @@ public class ListAdapter extends RecyclerView.Adapter {
     private class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView mTextView;
         private ImageView mImageView;
+        private int mIndex;
 
         public ListViewHolder(View itemView) {
             super(itemView);
@@ -41,6 +48,7 @@ public class ListAdapter extends RecyclerView.Adapter {
         }
 
         public void bindView(int position ){
+            mIndex = position;
             // in this method we need to update the text view and image view to display the right recipe
             mTextView.setText(Recipes.names[position]);
             mImageView.setImageResource(Recipes.resourceIds[position]);
@@ -48,7 +56,7 @@ public class ListAdapter extends RecyclerView.Adapter {
 
         @Override
         public void onClick(View v) {
-
+            mListener.onListRecipeSelected(mIndex);
         }
     }
 }
