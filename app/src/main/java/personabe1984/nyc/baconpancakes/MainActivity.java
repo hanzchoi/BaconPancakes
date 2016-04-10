@@ -13,7 +13,8 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(savedInstanceState != null){
+        ListFragment savedFragment = (ListFragment) getFragmentManager().findFragmentById(R.id.placeHolder);
+        if(savedFragment == null){
 
             ListFragment fragment = new ListFragment();
             //Fragmentmanager is an interface for interacting with our fragments
