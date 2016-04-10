@@ -13,15 +13,18 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListFragment fragment = new ListFragment();
-        //Fragmentmanager is an interface for interacting with our fragments
-        // Gives us access to the fragment transaction API, like add or remove fragment
-        FragmentManager fragmentManager = getFragmentManager();
+        if(savedInstanceState != null){
 
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.placeHolder,fragment);
+            ListFragment fragment = new ListFragment();
+            //Fragmentmanager is an interface for interacting with our fragments
+            // Gives us access to the fragment transaction API, like add or remove fragment
+            FragmentManager fragmentManager = getFragmentManager();
 
-        fragmentTransaction.commit();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.placeHolder,fragment);
+
+            fragmentTransaction.commit();
+        }
 
     }
 
