@@ -1,6 +1,5 @@
 package personabe1984.nyc.baconpancakes;
 
-
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
