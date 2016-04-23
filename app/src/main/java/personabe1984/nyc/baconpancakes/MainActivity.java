@@ -14,21 +14,39 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        boolean isTablet = getResources().getBoolean(R.bool.is_tablet);
+        //Toast.makeText(MainActivity.this, isTablet + "",Toast.LENGTH_LONG).show();
+        if(!isTablet){
+            ListFragment savedFragment = (ListFragment) getSupportFragmentManager()
+                    .findFragmentByTag(LIST_FRAGMENT);
+            if(savedFragment == null){
 
-        ListFragment savedFragment = (ListFragment) getSupportFragmentManager()
-                .findFragmentByTag(LIST_FRAGMENT);
-        if(savedFragment == null){
+                ListFragment fragment = new ListFragment();
+                //Fragmentmanager is an interface for interacting with our fragments
+                // Gives us access to the fragment transaction API, like add or remove fragment
+                FragmentManager fragmentManager = getSupportFragmentManager();
 
-            ListFragment fragment = new ListFragment();
-            //Fragmentmanager is an interface for interacting with our fragments
-            // Gives us access to the fragment transaction API, like add or remove fragment
-            FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.placeHolder,fragment,LIST_FRAGMENT);
 
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.placeHolder,fragment,LIST_FRAGMENT);
+                fragmentTransaction.commit();
+            }
+        }else{
+            GridFragment savedFragment = (GridFragment) getSupportFragmentManager()
+                    .findFragmentByTag(LIST_FRAGMENT);
+            if(savedFragment == null){
 
-            fragmentTransaction.commit();
+                GridFragment fragment = new GridFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.placeHolder,fragment,LIST_FRAGMENT);
+
+                fragmentTransaction.commit();
+            }
         }
+
+
 
     }
 
